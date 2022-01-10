@@ -86,3 +86,139 @@ bottomNavItems.forEach((item, index) => {
         bottomMove.style.left = index * 25 + '%'
     }
 })
+
+//CART PAGE
+
+let carts = document.querySelectorAll('.add-cart');
+
+let products = [
+    {
+        name: "Jollof rice",
+        tag: "jollofrice",
+        price: 1000,
+        inCart: 0
+    },
+    {
+        name: "Fried rice",
+        tag: "friedfrice",
+        price: 1000,
+        inCart: 0
+    },
+    {
+        name: "Ofada rice",
+        tag: "ofadarice",
+        price: 1000,
+        inCart: 0
+    },
+    {
+        name: "Porridge",
+        tag: "porridge",
+        price: 1000,
+        inCart: 0
+    },
+    {
+        name: "Amala",
+        tag: "amala",
+        price: 500 ,
+        inCart: 0
+    },
+    {
+        name: "Fufu",
+        tag: "fufu",
+        price: 500,
+        inCart: 0
+    },
+    {
+        name: "Semo",
+        tag: "semo",
+        price: 500,
+        inCart: 0
+    },
+    {
+        name: "Pounded Yam",
+        tag: "poundedyam",
+        price: 500,
+        inCart: 0
+    },
+    {
+        name: "Beef",
+        tag: "beef",
+        price: 300,
+        inCart: 0
+    },
+    {
+        name: "Goat Meat",
+        tag: "goatmeat",
+        price: 300,
+        inCart: 0
+    },
+    {
+        name: "Ponmo",
+        tag: "ponmo",
+        price: 300,
+        inCart: 0
+    },
+    {
+        name: "Titus Fish",
+        tag: "titusfish",
+        price: 300,
+        inCart: 0
+    },
+    {
+        name: "Chicken",
+        tag: "chicken",
+        price: 300,
+        inCart: 0
+    },
+    {
+        name: "Turkey",
+        tag: "turkey",
+        price: 300,
+        inCart: 0,
+    },
+    {
+        name: "Offals",
+        tag: "offals",
+        price:  300,
+        inCart: 0,
+    }
+];
+
+    for(let i=0; i < carts.length; i++) {
+    carts[i].addEventListener('click', () =>{
+        cartNumbers(products[i]);
+    });
+};
+
+function onLoadCartNumbers(){
+    let productNumbers = localStorage.getItem('cartNumbers');
+
+    if(productNumbers){
+        document.querySelector('.cart-btn h3').textContent = productNumbers;
+    }
+}
+
+function cartNumbers(product) {
+    console.log("the product clicked is", product);
+    let productNumbers = localStorage.getItem('cartNumbers');
+    
+
+    productNumbers = parseInt(productNumbers);
+    if (productNumbers) {
+        localStorage.setItem('cartNumbers', productNumbers + 1);
+        document.querySelector('.cart-btn h3').textContent = productNumbers + 1;
+    }
+    else{
+        localStorage.setItem('cartNumbers', 1);
+        document.querySelector('.cart-btn h3').textContent = 1;
+    }
+    setItems(product);
+
+}
+
+function setItems(product) {
+    console.log("inside of setItems function");
+    console.log("my product is", product);
+}
+
+onLoadCartNumbers();
